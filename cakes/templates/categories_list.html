@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="breadcrumbs-custom">
+        <div class="parallax-container" data-parallax-img="{% static 'images/bg-blog.jpg' %}">
+            <div class="breadcrumbs-custom-body parallax-content context-dark">
+                <div class="container">
+                    <h1 class="breadcrumbs-custom-title">Категорія</h1>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-custom-footer">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="{% url 'home' %}">Головна</a></li>
+                    <li class="active">Продукція</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Button Sizes-->
+    <section class="section section-xl bg-primary-2">
+        <div class="container">
+            <div class="row row-30">
+                <div class="col-sm-6 col-lg-4">
+                    <!-- Post Classic-->
+                    <article class="post post-classic box-md"><a
+                            class="post-classic-figure"
+                            href=""><img
+                            src="" alt="" width="370"
+                            height="239"/></a>
+                        <div class="post-classic-content">
+                            <h4 class="post-classic-title"><a
+                                    href="">Весільні</a></h4>
+                            <p class="post-classic-text">Est velox nuptia,
+                                cesaris. Est dexter turpis, cesaris. Cum nixus
+                                persuadere, omnes fluctuies promissio flavum</p>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+            <div class="pagination-wrap">
+                <!-- Bootstrap Pagination-->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item page-item-control disabled"><a
+                                class="page-link" href=""
+                                aria-label="Previous"><span class="icon"
+                                                            aria-hidden="true"></span></a>
+                        </li>
+                        <li class="page-item active"><span
+                                class="page-link">1</span></li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="">3</a>
+                        </li>
+                        <li class="page-item page-item-control"><a
+                                class="page-link" href=""
+                                aria-label="Next"><span class="icon"
+                                                        aria-hidden="true"></span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+{% endblock %}

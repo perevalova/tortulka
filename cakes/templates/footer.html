@@ -1,0 +1,96 @@
+{% load static %}
+
+<footer class="section footer-modern footer-modern-2">
+    <div class="footer-modern-body section-xl">
+        <div class="container">
+            <div class="row row-40 row-md-50 justify-content-xl-between">
+                <div class="col-md-10 col-lg-3 col-xl-4 wow fadeInRight">
+                    <div class="inset-xl-right-70 block-1">
+                        <div class="footer-classic-brand">
+                            <!--Brand--><a class="brand"
+                                           href="{% url 'home' %}"><img
+                                class="brand-logo-dark"
+                                src="{% static 'images/tortulka_logo1.png' %}" alt=""
+                                width="156" height="46"/><img
+                                class="brand-logo-light"
+                                src="{% static 'images/logo-inverse-312x92.png' %}" alt=""
+                                width="156" height="46"/></a>
+                        </div>
+                        <p class="footer-classic-text">Працюю кондитером починаючи
+                            з 1995 року
+                            для забезпечення смачних тортів та
+                            інших видів випічки для різноманітних заходів,
+                            включаючи весілля, дні народження та вечірки. Я
+                            рада запропонувати торт, який Ви полюбите.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-7 col-lg-5 wow fadeInRight"
+                     data-wow-delay=".1s">
+                    <h5 class="footer-modern-title">Navigation</h5>
+                    <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
+                        <li><a href="about-us.html">Про мене</a></li>
+                        <li><a href="our-team.html">Продукція</a></li>
+                        <li><a href="testimonials.html">Правила</a></li>
+                        <li><a href="grid-shop.html">Відгуки</a></li>
+                        <li><a href="index.html#">FAQ</a></li>
+                        <li><a href="contact-us.html">Контакти</a></li>
+                        <li><a href="index.html#">Весільні торти</a></li>
+                        <li><a href="index.html#">День народження</a></li>
+                        <li><a href="index.html#">Капкейки</a></li>
+                        <li><a href="index.html#">Пошук</a></li>
+                        <li><a href="index.html#">Biscuits</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3 wow fadeInRight"
+                     data-wow-delay=".2s">
+                    <h5 class="footer-modern-title">На зв'язку</h5>
+                    <ul class="contacts-creative">
+                        <li>
+                            <div class="unit unit-spacing-sm flex-column flex-md-row">
+                                <div class="unit-left"><span
+                                        class="icon mdi mdi-clock"></span>
+                                </div>
+                                <div class="unit-body"><a
+                                        href="">З 10:00 до 20:00</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="unit unit-spacing-sm flex-column flex-md-row">
+                                <div class="unit-left"><span
+                                        class="icon mdi mdi-map-marker"></span>
+                                </div>
+                                <div class="unit-body"><a
+                                        href="">Житомир, Україна</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="unit unit-spacing-sm flex-column flex-md-row">
+                                <div class="unit-left"><span
+                                        class="icon mdi mdi-phone"></span>
+                                </div>
+                                <div class="unit-body"><a href="tel:#">{{ contact_phone }}</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="unit unit-spacing-sm flex-column flex-md-row">
+                                <div class="unit-left"><span
+                                        class="icon mdi mdi-email-outline"></span>
+                                </div>
+                                <div class="unit-body"><a href="mailto:#">{{ contact_mail }}</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-modern-panel text-center">
+        <div class="container">
+            <p class="rights"><span>&copy;&nbsp; </span><span
+                    class="copyright-year"></span><span>&nbsp;</span><span>Tortulka</span><span>.&nbsp; All rights reserved.</span><span>&nbsp;</span>
+                    Developed by <a
+                    href="https://github.com/perevalova">perevalova</a><span></span></p>
+        </div>
+    </div>
+</footer>
