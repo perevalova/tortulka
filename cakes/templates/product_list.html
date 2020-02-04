@@ -102,15 +102,15 @@
                 </div>
                 <div class="col-lg-8 col-xl-9">
                     <div class="product-top-panel group-md">
-                        <p class="product-top-panel-title">Показано 1–9 з 28
+                        <p class="product-top-panel-title">Усього {{ product_amount }}
                             </p>
                         <div>
                             <div class="group-sm group-middle">
                                 <div class="product-top-panel-sorting">
-                                    <select>
-                                        <option value="1">Сортувати за новизною
+                                    <select name="order_by">
+                                        <option value="newest">Сортувати за новизною
                                         </option>
-                                        <option value="2">Сортувати за алфавітом
+                                        <option value="abc">Сортувати за алфавітом
                                         </option>
                                     </select>
                                 </div>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="row row-30 row-lg-50">
-                        {% for object in object_list %}
+                        {% for object in products %}
                         <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                             <!-- Product-->
                             <article class="product">
@@ -135,31 +135,7 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <div class="pagination-wrap">
-                        <!-- Bootstrap Pagination-->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li class="page-item page-item-control disabled">
-                                    <a class="page-link" href="grid-shop.html#"
-                                       aria-label="Previous"><span class="icon"
-                                                                   aria-hidden="true"></span></a>
-                                </li>
-                                <li class="page-item active"><span
-                                        class="page-link">1</span></li>
-                                <li class="page-item"><a class="page-link"
-                                                         href="grid-shop.html#">2</a>
-                                </li>
-                                <li class="page-item"><a class="page-link"
-                                                         href="grid-shop.html#">3</a>
-                                </li>
-                                <li class="page-item page-item-control"><a
-                                        class="page-link" href="grid-shop.html#"
-                                        aria-label="Next"><span class="icon"
-                                                                aria-hidden="true"></span></a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {% include 'pagination.html' %}
                 </div>
             </div>
         </div>

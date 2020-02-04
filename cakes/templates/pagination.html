@@ -1,0 +1,26 @@
+{% if is_paginated %}
+    {% with order_by=request.GET.order_by q=request.GET.q %}
+        <div class="pagination-wrap">
+            <!-- Bootstrap Pagination-->
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li><a class="page-link"
+                            href="?page=1{% if q %}&amp;q={{ q }}{% endif %}{% if order_by %}&amp;order_by={{ order_by }}{% endif %}"
+                            aria-label="Previous">&laquo;</a>
+                    </li>
+                    {% for p in products.paginator.page_range %}
+                        {% if p <= products.number|add:4 and p >= products.number|add:-5 %}
+                            <li {% if products.number == p %}class="page-item active"{% endif %}>
+                                <a href="?page={{ p }}{% if q %}&amp;q={{ q }}{% endif %}{% if order_by %}&amp;order_by={{ order_by }}{% endif %}"
+                                   class="page-link">{{ p }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    <li><a class="page-link" href="?page={{ products.paginator.num_pages }}{% if q %}&amp;q={{ q }}{% endif %}{% if order_by %}&amp;order_by={{ order_by }}{% endif %}"
+                           aria-label="Next">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    {% endwith %}
+{% endif %}
