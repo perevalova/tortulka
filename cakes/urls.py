@@ -6,7 +6,7 @@ from cakes.views import MainPageView, ContactsView, CategoryView, ProductList, \
 urlpatterns = [
     path('', MainPageView.as_view(), name='home'),
     path('products/', CategoryView.as_view(), name='products'),
+    path('contacts/', ContactsView.as_view(), name='contacts'),
     path('<slug:slug>/', ProductList.as_view(), name='product_list'),
     path('<slug:category>/<slug:product>', ProductDetail.as_view(), name='product_detail'),
-    path('contacts/', ContactsView.as_view(), name='contacts'),
 ]
