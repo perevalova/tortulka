@@ -23,22 +23,22 @@
     <section class="section section-xl bg-primary-2">
         <div class="container">
             <div class="row row-30">
+                {% for category in category_list %}
                 <div class="col-sm-6 col-lg-4">
                     <!-- Post Classic-->
                     <article class="post post-classic box-md"><a
                             class="post-classic-figure"
-                            href=""><img
-                            src="" alt="" width="370"
+                            href="{{ category.get_absolute_url }}"><img
+                            src="{{ category.image.url }}" alt="" width="370"
                             height="239"/></a>
                         <div class="post-classic-content">
                             <h4 class="post-classic-title"><a
-                                    href="">Весільні</a></h4>
-                            <p class="post-classic-text">Est velox nuptia,
-                                cesaris. Est dexter turpis, cesaris. Cum nixus
-                                persuadere, omnes fluctuies promissio flavum</p>
+                                    href="{{ category.get_absolute_url }}">{{ category.title }}</a></h4>
+                            <p class="post-classic-text">{{ category.description }}</p>
                         </div>
                     </article>
                 </div>
+                {% endfor %}
 
             </div>
             <div class="pagination-wrap">

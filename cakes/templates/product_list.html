@@ -14,7 +14,7 @@
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="{% url 'home' %}">Головна</a></li>
-                    <li><a href="{% url 'product_list' %}">Продукція</a></li>
+                    <li><a href="{% url 'products' %}">Продукція</a></li>
                     <li class="active">Категорії</li>
                 </ul>
             </div>
@@ -118,20 +118,22 @@
                         </div>
                     </div>
                     <div class="row row-30 row-lg-50">
+                        {% for object in object_list %}
                         <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                             <!-- Product-->
                             <article class="product">
                                 <div class="product-body">
                                     <div class="product-figure"><img
-                                            src=""
+                                            src="{{ object.images.all.first.image.url }}"
                                             alt="" width="220" height="160"/>
                                     </div>
                                     <h5 class="product-title"><a
-                                            href="">Дитячий торт</a></h5>
+                                            href="{{ object.get_absolute_url }}">{{ object.title }}</a></h5>
                                 </div>
 {#                                <span class="product-badge product-badge-sale">Sale</span>#}
                             </article>
                         </div>
+                        {% endfor %}
                     </div>
                     <div class="pagination-wrap">
                         <!-- Bootstrap Pagination-->

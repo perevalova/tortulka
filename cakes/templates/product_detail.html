@@ -3,7 +3,7 @@
 
 {% block content %}
     <section class="breadcrumbs-custom">
-        <div class="parallax-container" data-parallax-img="images/bg-shop.jpg">
+        <div class="parallax-container" data-parallax-img="{% static 'images/bg-shop.jpg' %}">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
                     <h1 class="breadcrumbs-custom-title">Single Product</h1>
@@ -14,8 +14,8 @@
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="{% url 'home' %}">Головна</a></li>
-                    <li><a href="{% url 'product_list' %}">Продукція</a></li>
-                    <li><a href="{% url 'category_list' %}">Категорія</a></li>
+                    <li><a href="{% url 'products' %}">Продукція</a></li>
+{#                    <li><a href="{% url 'product_list' object.category %}">Категорія</a></li>#}
                     <li class="active">Єдиний продукт</li>
                 </ul>
             </div>
@@ -32,12 +32,14 @@
                              id="carousel-parent" data-items="1"
                              data-swipe="true" data-child="#child-carousel"
                              data-for="#child-carousel">
+                            {% for image in object.images.all %}
                             <div class="item">
                                 <div class="slick-product-figure"><img
-                                        src="images/single-product-1-530x480.png"
+                                        src="{{ image.image.url }}"
                                         alt="" width="530" height="480"/>
                                 </div>
                             </div>
+                            {% endfor %}
                             <div class="item">
                                 <div class="slick-product-figure"><img
                                         src="images/single-product-2-530x480.png"
@@ -81,17 +83,13 @@
                 <div class="col-lg-6">
                     <div class="single-product">
                         <h3 class="text-transform-none font-weight-medium">
-                            Хлопчику на День народження</h3>
+                            {{ object.title }}</h3>
                         <div class="group-md group-middle">
                         </div>
-                        <p>Lorem ipsum dolor sit amet, ei impetus epicurei his,
-                            ne falli erant consequuntur est. Mei simul aperiam
-                            eu, an rebum regione ponderum mel. Facer placerat ut
-                            duo, id duis solum maiorum vis, vim autemsemper
-                            docendi cu. Pro</p>
+                        {% if object.description %}<p>{{ object.description }}</p>{% endif %}
                         <hr class="hr-gray-100">
                         <ul class="list list-description">
-                            <li><span>Категорії:</span><span>День народження</span></li>
+                            <li><span>Категорії:</span>{% for category in object.category.all %}<span>{{ category }}</span> {% endfor %}</li>
                         </ul>
                         <hr class="hr-gray-100">
                         <div class="group-xs group-middle"><span
