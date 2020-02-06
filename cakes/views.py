@@ -1,6 +1,11 @@
-from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 
 from cakes.models import Category, Product
+from tortulka.settings import CONTACT_EMAIL
+from .forms import ContactForm
 from .util import paginate
 
 class MainPageView(TemplateView):
@@ -51,8 +56,28 @@ class ProductDetail(DetailView):
         return obj
 
 
-class ContactsView(TemplateView):
+class ContactsView(FormView):
     template_name = 'contacts.html'
+    form_class = ContactForm
+
+    def get_success_url(self):
+        return reverse('contacts')
+
+    def form_valid(self, form):
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        phone_number = form.cleaned_data['phone_number']
+        subject = f'{first_name} {last_name}, {phone_number}'
+        email = form.cleaned_data['email']
+        message = form.cleaned_data['message']
+
+        send_mail(subject, message, email, [CONTACT_EMAIL])
+        messages.success(self.request, 'Лист успішно надісланий!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.warning(self.request, 'Під час надсилання листа сталася несподівана помилка. Спробуйте скористатися цією формою пізніше.')
+        return super().form_invalid(form)
 
 
 class SearchView(ListView):
@@ -66,8 +91,6 @@ class SearchView(ListView):
         products = Product.objects.none()
         if search_product:
             products = Product.objects.filter(title__icontains=search_product).prefetch_related('category', 'images')
-        # else:
-        #     products = ''
 
         return products
 
