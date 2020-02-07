@@ -26,44 +26,87 @@
             <div class="row row-50">
                 <div class="col-lg-4 col-xl-3">
                     <div class="aside row row-30 row-md-50 justify-content-md-between">
-
+                        <form action="." method="get">
                         <div class="aside-item col-sm-6 col-md-5 col-lg-12">
-                            <h6 class="aside-title">Фільтрація</h6>
+                            <h6 class="aside-title">Категорії</h6>
                             <ul class="list-shop-filter">
                                 <li>
                                     <label class="checkbox-inline">
-                                        <input name="input-group-radio"
-                                               value="checkbox-1"
-                                               type="checkbox">Мастика
-                                    </label><span
-                                        class="list-shop-filter-number">(18)</span>
+                                        <input name="category"
+                                               value="mastika"
+                                               type="checkbox" {% ifequal request.GET.category 'mastika' %}
+                                       checked="checked" {% endifequal %}>Мастика
+                                    </label>
                                 </li>
                                 <li>
                                     <label class="checkbox-inline">
-                                        <input name="input-group-radio"
-                                               value="checkbox-2"
-                                               type="checkbox">Кремові
-                                    </label><span
-                                        class="list-shop-filter-number">(9)</span>
+                                        <input name="category"
+                                               value="kremovi"
+                                               type="checkbox" {% ifequal request.GET.category 'kremovi' %}
+                                       checked="checked" {% endifequal %}>Кремові
+                                    </label>
                                 </li>
                                 <li>
                                     <label class="checkbox-inline">
-                                        <input name="input-group-radio"
-                                               value="checkbox-3"
-                                               type="checkbox">Сметанний
-                                    </label><span
-                                        class="list-shop-filter-number">(5)</span>
+                                        <input name="category"
+                                               value="medovik"
+                                               type="checkbox" {% ifequal request.GET.category 'medovik' %}
+                                       checked="checked" {% endifequal %}>Медовик
+                                    </label>
                                 </li>
                                 <li>
                                     <label class="checkbox-inline">
-                                        <input name="input-group-radio"
+                                        <input name="category"
                                                value="checkbox-4"
                                                type="checkbox">Інше
-                                    </label><span
-                                        class="list-shop-filter-number">(8)</span>
+                                    </label>
                                 </li>
                             </ul>
-                            <!-- RD Search Form-->
+                        </div>
+                        <div class="aside-item col-sm-6 col-md-5 col-lg-12">
+                            <h6 class="aside-title tiers-filter">Ярусність</h6>
+                            <ul class="list-shop-filter">
+                                <li>
+                                    <label class="checkbox-inline">
+                                        <input name="tiers"
+                                               value="odin-yarus"
+                                               type="checkbox" {% ifequal request.GET.tiers 'odin-yarus' %}
+                                       checked="checked" {% endifequal %}>Один ярус
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checkbox-inline">
+                                        <input name="tiers"
+                                               value="dva-yarusi"
+                                               type="checkbox" {% ifequal request.GET.tiers 'dva-yarusi' %}
+                                       checked="checked" {% endifequal %}>Два яруси
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checkbox-inline">
+                                        <input name="tiers"
+                                               value="tri-yarusi"
+                                               type="checkbox" {% ifequal request.GET.tiers 'tri-yarusi' %}
+                                       checked="checked" {% endifequal %}>Три яруси
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checkbox-inline">
+                                        <input name="tiers"
+                                               value="chotyry_yarusy"
+                                               type="checkbox" {% ifequal request.GET.tiers 'chotyry_yarusy' %}
+                                       checked="checked" {% endifequal %}>Чотири яруси
+                                    </label>
+                                </li>
+                            </ul>
+                            <div class="filter-button">
+                                <button class="button button-sm button-secondary button-zakaria"
+                                        type="submit">Фільтрувати
+                                </button>
+                            </div>
+                        </div>
+                        </form>
+                        <!-- RD Search Form-->
                             <form class="rd-search form-search form-custom"
                                   action="" method="get">
                                 <div class="form-wrap">
@@ -75,7 +118,6 @@
                                             type="submit"></button>
                                 </div>
                             </form>
-                        </div>
                         <div class="aside-item col-sm-6 col-lg-12">
                             <h6 class="aside-title">Популярні продукти</h6>
                             <div class="row row-10 row-lg-20 gutters-10">
@@ -107,12 +149,10 @@
                         <div>
                             <div class="group-sm group-middle">
                                 <div class="product-top-panel-sorting">
-                                    <select name="order_by">
-                                        <option value="newest">Сортувати за новизною
-                                        </option>
-                                        <option value="abc">Сортувати за алфавітом
-                                        </option>
-                                    </select>
+                                    <span>
+                                        <a href="{% url 'product_list' 'tort-na-den-narodzhennya' %}?page={{ product_list.number }}&amp;order_by=newest">Новее</a> |
+                                        <a href="{% url 'product_list' 'tort-na-den-narodzhennya' %}?page={{ product_list.number }}&amp;order_by=oldest">Старее</a>
+                                    </span>
                                 </div>
                             </div>
                         </div>

@@ -33,6 +33,14 @@ class ProductList(ListView):
         elif order_by == 'abc':
             product_list = product_list.order_by('title', 'id')
 
+        category_filter = self.request.GET.get('category', '')
+        if category_filter:
+            product_list = product_list.filter(category__slug=category_filter)
+
+        tiers_filter = self.request.GET.get('tiers', '')
+        if tiers_filter:
+            product_list = product_list.filter(category__slug=tiers_filter)
+
         return product_list
 
     def get_context_data(self, *, object_list=None, **kwargs):
