@@ -84,10 +84,9 @@
                     <div class="single-product">
                         <h3 class="text-transform-none font-weight-medium">
                             {{ object.title }}</h3>
-                        <div class="group-md group-middle">
-                        </div>
-                        {% if object.description %}<p>{{ object.description }}</p>{% endif %}
+                        {% if object.description %}<p>{{ object.description }}</p>
                         <hr class="hr-gray-100">
+                        {% endif %}
                         <ul class="list list-description">
                             <li><span>Категорії:</span>{% for category in object.category.all %}<span>{{ category }}</span> {% endfor %}</li>
                         </ul>
@@ -96,10 +95,10 @@
                                 class="list-social-title">Поширити</span>
                             <div>
                                 <ul class="list-inline list-social list-inline-sm">
-                                    <li><a class="icon mdi mdi-facebook"
-                                           href="single-product.html#"></a></li>
-                                    <li><a class="icon mdi mdi-instagram"
-                                           href="single-product.html#"></a></li>
+                                    <li><a class="icon mdi mdi-facebook" target="_blank" title="Facebook"
+                                           href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"></a></li>
+                                    <li><a class="icon mdi mdi-telegram" target="_blank" title="Telegram"
+                                           href="https://telegram.me/share/url?url={{ request.build_absolute_uri|urlencode }}"></a></li>
                                 </ul>
                             </div>
                         </div>
