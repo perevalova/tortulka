@@ -11,9 +11,6 @@
                                            href="{% url 'home' %}"><img
                                 class="brand-logo-dark"
                                 src="{% static 'images/tortulka_logo1.png' %}" alt=""
-                                width="156" height="46"/><img
-                                class="brand-logo-light"
-                                src="{% static 'images/logo-inverse-312x92.png' %}" alt=""
                                 width="156" height="46"/></a>
                         </div>
                         <p class="footer-classic-text">Працюю кондитером починаючи
@@ -28,17 +25,15 @@
                      data-wow-delay=".1s">
                     <h5 class="footer-modern-title">Навігація</h5>
                     <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
-                        <li><a href="about-us.html">Про мене</a></li>
-                        <li><a href="our-team.html">Продукція</a></li>
-                        <li><a href="testimonials.html">Правила</a></li>
-                        <li><a href="grid-shop.html">Відгуки</a></li>
-                        <li><a href="index.html#">FAQ</a></li>
-                        <li><a href="contact-us.html">Контакти</a></li>
-                        <li><a href="index.html#">Весільні торти</a></li>
-                        <li><a href="index.html#">День народження</a></li>
-                        <li><a href="index.html#">Капкейки</a></li>
-                        <li><a href="index.html#">Пошук</a></li>
-                        <li><a href="index.html#">Biscuits</a></li>
+                        <li><a href="#">Про мене</a></li>
+                        <li><a href="{% url 'products' %}">Продукція</a></li>
+                        <li><a href="#">Правила</a></li>
+{#                        <li><a href="grid-shop.html">Відгуки</a></li>#}
+{#                        <li><a href="index.html#">FAQ</a></li>#}
+                        <li><a href="{% url 'contacts' %}">Контакти</a></li>
+                        <li><a href="{% url 'product_list' 'vesilni' %}">Весільні торти</a></li>
+                        <li><a href="{% url 'product_list' 'tort-na-den-narodzhennya' %}">День народження</a></li>
+                        <li><a href="{% url 'search' %}">Пошук</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3 wow fadeInRight"
@@ -68,7 +63,7 @@
                                 <div class="unit-left"><span
                                         class="icon mdi mdi-phone"></span>
                                 </div>
-                                <div class="unit-body"><a href="tel:#">{{ contact_phone }}</a></div>
+                                <div class="unit-body"><a href="tel:#">+380-675-888-322</a></div>
                             </div>
                         </li>
                         <li>
@@ -76,7 +71,7 @@
                                 <div class="unit-left"><span
                                         class="icon mdi mdi-email-outline"></span>
                                 </div>
-                                <div class="unit-body"><a href="mailto:#">{{ contact_mail }}</a>
+                                <div class="unit-body"><a href="mailto:#">tortulk4@gmail.com</a>
                                 </div>
                             </div>
                         </li>
@@ -89,12 +84,12 @@
                      data-wow-delay=".2s">
                 <h5 class="footer-modern-title">Соціальні мережі</h5>
                 <ul class="list-inline list-social list-inline-lg">
-                    <li><a class="icon mdi mdi-facebook"
+                    <li><a class="icon mdi mdi-facebook" target="_blank" title="Facebook"
                            href="https://www.facebook.com/cakesalla"></a></li>
-                    <li><a class="icon mdi mdi-instagram"
+                    <li><a class="icon mdi mdi-instagram" target="_blank" title="Instagram"
                            href="https://instagram.com/cakes_zt"></a></li>
-                    <li><a class="icon mdi mdi-google-plus"
-                           href="grid-shop.html#"></a></li>
+                    <li><a class="icon mdi mdi-telegram" target="_blank" title="Telegram"
+                           href="https://t.me/joinchat/AAAAAFdTfGfta9EtZFXJGw"></a></li>
                 </ul>
             </div>
             </div>
