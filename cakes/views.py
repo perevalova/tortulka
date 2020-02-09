@@ -11,6 +11,11 @@ from .util import paginate
 class MainPageView(TemplateView):
     template_name = 'main.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_list'] = Product.objects.all()[:8].prefetch_related('category', 'images')
+        return context
+
 
 class CategoryView(ListView):
     template_name = 'category_list.html'
@@ -24,6 +29,11 @@ class ProductList(ListView):
 
     def get_queryset(self):
         product_list = Product.objects.filter(category__slug=self.kwargs['slug']).prefetch_related('category', 'images')
+
+        search_product = self.request.GET.get('q', '')
+        if search_product:
+            product_list = product_list.filter(
+                title__icontains=search_product)
 
         order_by = self.request.GET.get('order_by', '')
         if order_by == 'newest':
@@ -111,3 +121,6 @@ class SearchView(ListView):
         context['product_amount'] = product_amount
 
         return context
+
+class RulesView(TemplateView):
+    template_name = 'rules.html'
