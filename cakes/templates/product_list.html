@@ -20,13 +20,15 @@
             </div>
         </div>
     </section>
-    <!-- Section Shop-->
+    <!-- Section Products -->
     <section class="section section-xxl bg-primary-2 text-md-left">
         <div class="container">
             <div class="row row-50">
+            <!-- Filter products -->
                 <div class="col-lg-4 col-xl-3">
                     <div class="aside row row-30 row-md-50 justify-content-md-between">
                         <form action="." method="get">
+                        <!-- Filter by category -->
                         <div class="aside-item col-sm-6 col-md-5 col-lg-12">
                             <h6 class="aside-title">Категорії</h6>
                             <ul class="list-shop-filter">
@@ -71,6 +73,7 @@
                                 </li>
                             </ul>
                         </div>
+                        <!-- Filter by tiers -->
                         <div class="aside-item col-sm-6 col-md-5 col-lg-12">
                             <h6 class="aside-title tiers-filter">Ярусність</h6>
                             <ul class="list-shop-filter">
@@ -122,7 +125,7 @@
                             </div>
                         </div>
                         </form>
-                        <!-- RD Search Form-->
+                        <!-- Search Form-->
                             <form class="rd-search form-search form-custom"
                                   action="" method="get">
                                 <div class="form-wrap">
@@ -158,6 +161,7 @@
 {#                        </div>#}
                     </div>
                 </div>
+            <!-- End filter products -->
                 <div class="col-lg-8 col-xl-9">
                     <div class="product-top-panel group-md">
                         <p class="product-top-panel-title">Усього {{ product_amount }}
@@ -175,9 +179,9 @@
                     </div>
                     <div class="row row-30 row-lg-50">
                     {% if products %}
+                        <!-- Product-->
                         {% for object in products %}
                         <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                            <!-- Product-->
                             <article class="product">
                                 <div class="product-body">
                                     <div class="product-figure"><img

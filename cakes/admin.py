@@ -4,7 +4,9 @@ from cakes.models import Image, Product, Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}
+    list_per_page = 20
 
 
 class ImageInline(admin.TabularInline):
