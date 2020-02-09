@@ -1,14 +1,21 @@
 /* Product detail */
-.slick-product-figure img {
-    width: 530px;
-    height: 480px;
-}
 .list-inline.list-social.list-inline-lg {
     text-align: center;
 }
 
-/*Product list*/
+/*Product detail (Image)*/
+.slick-product-figure-first {
+    width: 530px;
+    height: auto;
+}
 
+.slick-product-figure-first img {
+    width: 100%;
+    height: auto;
+}
+
+
+/*Product list*/
 .tiers-filter{
     margin-top: 15px;
 }
@@ -20,6 +27,7 @@
 .radio-inline {
     color: #505050;
 }
+
 
 /*Map*/
 #map {

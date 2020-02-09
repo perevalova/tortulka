@@ -2,111 +2,96 @@
 {% load static %}
 
 {% block content %}
-    <section class="breadcrumbs-custom">
-        <div class="parallax-container" data-parallax-img="{% static 'images/bg-shop.jpg' %}">
-            <div class="breadcrumbs-custom-body parallax-content context-dark">
-                <div class="container">
-                    <h1 class="breadcrumbs-custom-title">Single Product</h1>
-                </div>
-            </div>
-        </div>
-        <div class="breadcrumbs-custom-footer">
-            <div class="container">
-                <ul class="breadcrumbs-custom-path">
-                    <li><a href="{% url 'home' %}">Головна</a></li>
-                    <li><a href="{% url 'products' %}">Продукція</a></li>
-{#                    <li><a href="{% url 'product_list' object.category %}">Категорія</a></li>#}
-                    <li class="active">Єдиний продукт</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!-- Single Product-->
-    <section class="section section-xxl section-first bg-default">
-        <div class="container">
-            <div class="row row-30">
-                <div class="col-lg-6">
-                    <div class="slick-vertical slick-product">
-                        <!-- Slick Carousel-->
-                        <div class="slick-slider carousel-parent"
-                             id="carousel-parent" data-items="1"
-                             data-swipe="true" data-child="#child-carousel"
-                             data-for="#child-carousel">
-                            {% for image in object.images.all %}
-                            <div class="item">
-                                <div class="slick-product-figure"><img
-                                        src="{{ image.image.url }}"
-                                        alt="" width="530" height="480"/>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            <div class="item">
-                                <div class="slick-product-figure"><img
-                                        src="images/single-product-2-530x480.png"
-                                        alt="" width="530" height="480"/>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="slick-product-figure"><img
-                                        src="images/single-product-3-530x480.png"
-                                        alt="" width="530" height="480"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slick-slider child-carousel slick-nav-1"
-                             id="child-carousel" data-arrows="true"
-                             data-items="3" data-sm-items="3" data-md-items="3"
-                             data-lg-items="3" data-xl-items="3"
-                             data-xxl-items="3" data-md-vertical="true"
-                             data-for="#carousel-parent">
-                            <div class="item">
-                                <div class="slick-product-figure"><img
-                                        src="images/single-product-1-530x480.png"
-                                        alt="" width="530" height="480"/>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="slick-product-figure"><img
-                                        src="images/single-product-2-530x480.png"
-                                        alt="" width="530" height="480"/>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="slick-product-figure"><img
-                                        src="images/single-product-3-530x480.png"
-                                        alt="" width="530" height="480"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="single-product">
-                        <h3 class="text-transform-none font-weight-medium">
-                            {{ object.title }}</h3>
-                        {% if object.description %}<p>{{ object.description }}</p>
-                        <hr class="hr-gray-100">
-                        {% endif %}
-                        <ul class="list list-description">
-                            <li><span>Категорії:</span>{% for category in object.category.all %}<span>{{ category }}</span> {% endfor %}</li>
-                        </ul>
-                        <hr class="hr-gray-100">
-                        <div class="group-xs group-middle"><span
-                                class="list-social-title">Поширити</span>
-                            <div>
-                                <ul class="list-inline list-social list-inline-sm">
-                                    <li><a class="icon mdi mdi-facebook" target="_blank" title="Facebook"
-                                           href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"></a></li>
-                                    <li><a class="icon mdi mdi-telegram" target="_blank" title="Telegram"
-                                           href="https://telegram.me/share/url?url={{ request.build_absolute_uri|urlencode }}"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+<section class="breadcrumbs-custom">
+    <div class="parallax-container" data-parallax-img="{% static 'images/bg-shop.jpg' %}">
+        <div class="breadcrumbs-custom-body parallax-content context-dark">
+            <div class="container">
+                <h1 class="breadcrumbs-custom-title">Продукт</h1>
+            </div>
         </div>
-    </section>
-<div class="snackbars" id="form-output-global"></div>
+    </div>
+    <div class="breadcrumbs-custom-footer">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'products' %}">Продукція</a></li>
+                {#                    <li><a href="{% url 'product_list' object.category %}">Категорія</a></li>#}
+                <li class="active">Єдиний продукт</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Single Product-->
+<section class="section section-xxl section-first bg-default">
+    <div class="container">
+        <div class="row row-30">
+            <div class="col-lg-6">
+                <div class="slick-vertical slick-product">
+                    <!-- Slick Carousel-->
+                    <div class="slick-slider carousel-parent"
+                         id="carousel-parent" data-items="1"
+                         data-swipe="true" data-child="#child-carousel"
+                         data-for="#child-carousel">
+                        {% for image in object.images.all %}
+                        <div class="item">
+                            <div class="slick-product-figure-first"><img
+                                    src="{{ image.image.url }}"
+                                    alt="" width="530" height="480"/>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="slick-slider child-carousel slick-nav-1"
+                         id="child-carousel" data-arrows="true"
+                         data-items="3" data-sm-items="3" data-md-items="3"
+                         data-lg-items="3" data-xl-items="3"
+                         data-xxl-items="3" data-md-vertical="true"
+                         data-for="#carousel-parent">
+                        {% for image in object.images.all %}
+                        <div class="item">
+                            <div class="slick-product-figure"><img
+                                    src="{{ image.image.url }}"
+                                    alt="" width="530" height="480"/>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="single-product">
+                    <h3 class="text-transform-none font-weight-medium">
+                        {{ object.title }}</h3>
+                    {% if object.description %}
+                        <p>{{ object.description }}</p>
+                        <hr class="hr-gray-100">
+                    {% endif %}
+                    <ul class="list list-description">
+                        <li><span>Категорії:</span>
+                            {% for category in object.category.all %}
+                                <span>{{ category }},</span> {% endfor %}
+                        </li>
+                    </ul>
+                    <hr class="hr-gray-100">
+                    <div class="group-xs group-middle"><span
+                            class="list-social-title">Поширити</span>
+                        <div>
+                            <ul class="list-inline list-social list-inline-sm">
+                                <li><a class="icon mdi mdi-facebook"
+                                       target="_blank" title="Facebook"
+                                       href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"></a>
+                                </li>
+                                <li><a class="icon mdi mdi-telegram"
+                                       target="_blank" title="Telegram"
+                                       href="https://telegram.me/share/url?url={{ request.build_absolute_uri|urlencode }}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
