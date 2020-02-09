@@ -6,7 +6,8 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from cakes.models import Category, Product
 from tortulka.settings import CONTACT_EMAIL
 from .forms import ContactForm
-from .util import paginate
+from .util import paginate, filtering
+
 
 class MainPageView(TemplateView):
     template_name = 'main.html'
@@ -23,6 +24,9 @@ class CategoryView(ListView):
 
 
 class ProductList(ListView):
+    """
+    Page with product list for specific category
+    """
     model = Product
     template_name = 'product_list.html'
     paginate_by = 12
@@ -30,26 +34,8 @@ class ProductList(ListView):
     def get_queryset(self):
         product_list = Product.objects.filter(category__slug=self.kwargs['slug']).prefetch_related('category', 'images')
 
-        search_product = self.request.GET.get('q', '')
-        if search_product:
-            product_list = product_list.filter(
-                title__icontains=search_product)
-
-        order_by = self.request.GET.get('order_by', '')
-        if order_by == 'newest':
-            product_list = product_list.order_by('-added', 'id')
-        elif order_by == 'oldest':
-            product_list = product_list.order_by('added', 'id')
-        elif order_by == 'abc':
-            product_list = product_list.order_by('title', 'id')
-
-        category_filter = self.request.GET.get('category', '')
-        if category_filter:
-            product_list = product_list.filter(category__slug=category_filter)
-
-        tiers_filter = self.request.GET.get('tiers', '')
-        if tiers_filter:
-            product_list = product_list.filter(category__slug=tiers_filter)
+        # filter objects
+        filtering(self.request, product_list)
 
         return product_list
 
@@ -65,6 +51,9 @@ class ProductList(ListView):
 
 
 class ProductDetail(DetailView):
+    """
+    Single product
+    """
     model = Product
     template_name = 'product_detail.html'
 
@@ -75,6 +64,9 @@ class ProductDetail(DetailView):
 
 
 class ContactsView(FormView):
+    """
+    Contact page with form for send email
+    """
     template_name = 'contacts.html'
     form_class = ContactForm
 
@@ -89,8 +81,10 @@ class ContactsView(FormView):
         email = form.cleaned_data['email']
         message = form.cleaned_data['message']
 
+        # sending letter
         send_mail(subject, message, email, [CONTACT_EMAIL])
         messages.success(self.request, 'Лист успішно надісланий!')
+
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -99,6 +93,9 @@ class ContactsView(FormView):
 
 
 class SearchView(ListView):
+    """
+    Searching for specific product
+    """
     template_name = 'search.html'
     model = Product
     context_object_name = 'products'

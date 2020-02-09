@@ -36,3 +36,45 @@ def paginate(objects, size, request, context, var_name='object_list'):
     context['paginator'] = paginator
 
     return context
+
+
+def filtering(request, object_list):
+    """Filter objects provided by view.
+
+    This function takes:
+    * request:
+    * list of elements;
+
+    It returns filtered Queryset.
+    """
+
+    # searching
+    search_product = request.GET.get('q', '')
+    if search_product:
+        object_list = object_list.filter(
+            title__icontains=search_product)
+
+    # ordering
+    order_by = request.GET.get('order_by', '')
+    if order_by == 'newest':
+        object_list = object_list.order_by('-added', 'id')
+    elif order_by == 'oldest':
+        object_list = object_list.order_by('added', 'id')
+    elif order_by == 'abc':
+        object_list = object_list.order_by('title', 'id')
+
+    # filter by category
+    category_filter = request.GET.get('category', '')
+    if category_filter == 'all':
+        object_list = object_list
+    elif category_filter == 'all':
+        object_list = object_list.filter(category__slug=category_filter)
+
+    # filter by tiers
+    tiers_filter = request.GET.get('tiers', '')
+    if tiers_filter == 'all':
+        object_list = object_list
+    elif tiers_filter:
+        object_list = object_list.filter(category__slug=tiers_filter)
+
+    return object_list
