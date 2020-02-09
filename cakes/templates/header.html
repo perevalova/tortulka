@@ -30,18 +30,20 @@
                                            href="{% url 'home' %}"><img
                                 class="brand-logo-dark"
                                 src="{% static 'images/tortulka_logo1.png' %}" alt=""
-                                width="156" height="46"/><img
-                                class="brand-logo-light"
-                                src="{% static 'images/logo-inverse-312x92.png' %}" alt=""
-                                width="156" height="46"/></a>
+                                width="156" height="46"/</a>
                         </div>
                     </div>
                     <div class="rd-navbar-nav-wrap">
                         <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            {% url 'home' as home_url %}
+                            {% url 'products' as products_url %}
+                            {% url 'rules' as rules_url %}
+{#                            {% url "home" as home_url %}#}
+                            {% url 'contacts' as contacts_url %}
+                            <li class="rd-nav-item {% if request.path == home_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'home' %}">Головна</a>
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            <li class="rd-nav-item {% if request.path == products_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'products' %}">Продукція</a>
 {#                                <ul class="rd-menu rd-navbar-dropdown">#}
 {#                                    <li class="rd-dropdown-item"><a#}
@@ -56,8 +58,8 @@
 {#                                    </li>#}
 {#                                </ul>#}
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
-                                                       href="">Правила</a>
+                            <li class="rd-nav-item {% if request.path == rules_url %}active{% endif %}"><a class="rd-nav-link"
+                                                       href="{% url 'rules' %}">Правила</a>
 {#                                <ul class="rd-menu rd-navbar-dropdown">#}
 {#                                    <li class="rd-dropdown-item"><a#}
 {#                                            class="rd-dropdown-link"#}
@@ -68,7 +70,7 @@
                             <li class="rd-nav-item"><a class="rd-nav-link"
                                                        href="">Про мене</a>
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            <li class="rd-nav-item {% if request.path == contacts_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'contacts' %}">Контакти</a>
                             </li>
                         </ul>
