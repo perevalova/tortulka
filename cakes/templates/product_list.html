@@ -3,7 +3,7 @@
 
 {% block content %}
     <section class="breadcrumbs-custom">
-        <div class="parallax-container" data-parallax-img="{% static 'images/bg-shop.jpg' %}">
+        <div class="parallax-container" data-parallax-img="{% static 'images/bg-img-1.jpg' %}">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
                     <h1 class="breadcrumbs-custom-title">Категорії</h1>
@@ -31,34 +31,34 @@
                             <h6 class="aside-title">Категорії</h6>
                             <ul class="list-shop-filter">
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="category"
                                                value="mastika"
-                                               type="checkbox" {% ifequal request.GET.category 'mastika' %}
+                                               type="radio" {% ifequal request.GET.category 'mastika' %}
                                        checked="checked" {% endifequal %}>Мастика
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="category"
                                                value="kremovi"
-                                               type="checkbox" {% ifequal request.GET.category 'kremovi' %}
+                                               type="radio" {% ifequal request.GET.category 'kremovi' %}
                                        checked="checked" {% endifequal %}>Кремові
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="category"
                                                value="medovik"
-                                               type="checkbox" {% ifequal request.GET.category 'medovik' %}
+                                               type="radio" {% ifequal request.GET.category 'medovik' %}
                                        checked="checked" {% endifequal %}>Медовик
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="category"
                                                value="checkbox-4"
-                                               type="checkbox">Інше
+                                               type="radio">Інше
                                     </label>
                                 </li>
                             </ul>
@@ -67,34 +67,34 @@
                             <h6 class="aside-title tiers-filter">Ярусність</h6>
                             <ul class="list-shop-filter">
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="tiers"
                                                value="odin-yarus"
-                                               type="checkbox" {% ifequal request.GET.tiers 'odin-yarus' %}
+                                               type="radio" {% ifequal request.GET.tiers 'odin-yarus' %}
                                        checked="checked" {% endifequal %}>Один ярус
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="tiers"
                                                value="dva-yarusi"
-                                               type="checkbox" {% ifequal request.GET.tiers 'dva-yarusi' %}
+                                               type="radio" {% ifequal request.GET.tiers 'dva-yarusi' %}
                                        checked="checked" {% endifequal %}>Два яруси
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="tiers"
                                                value="tri-yarusi"
-                                               type="checkbox" {% ifequal request.GET.tiers 'tri-yarusi' %}
+                                               type="radio" {% ifequal request.GET.tiers 'tri-yarusi' %}
                                        checked="checked" {% endifequal %}>Три яруси
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="checkbox-inline">
+                                    <label class="radio-inline">
                                         <input name="tiers"
                                                value="chotyry_yarusy"
-                                               type="checkbox" {% ifequal request.GET.tiers 'chotyry_yarusy' %}
+                                               type="radio" {% ifequal request.GET.tiers 'chotyry_yarusy' %}
                                        checked="checked" {% endifequal %}>Чотири яруси
                                     </label>
                                 </li>
@@ -111,35 +111,35 @@
                                   action="" method="get">
                                 <div class="form-wrap">
                                     <input class="form-input" id="search-form"
-                                           type="text" name="s"
+                                           type="text" name="q"
                                            autocomplete="off">
                                     <label class="form-label" for="search-form">Шукати...</label>
                                     <button class="button-search fl-bigmug-line-search74"
                                             type="submit"></button>
                                 </div>
                             </form>
-                        <div class="aside-item col-sm-6 col-lg-12">
-                            <h6 class="aside-title">Популярні продукти</h6>
-                            <div class="row row-10 row-lg-20 gutters-10">
-                                <div class="col-4 col-sm-6 col-md-12">
-                                    <!-- Product Minimal-->
-                                    <article class="product-minimal">
-                                        <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                                            <div class="unit-left"><a
-                                                    class="product-minimal-figure"
-                                                    href=""><img
-                                                    src=""
-                                                    alt="" width="106"
-                                                    height="104"/></a></div>
-                                            <div class="unit-body">
-                                                <p class="product-minimal-title">
-                                                    <a href="">Весільний торт</a></p>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
+{#                        <div class="aside-item col-sm-6 col-lg-12">#}
+{#                            <h6 class="aside-title">Популярні продукти</h6>#}
+{#                            <div class="row row-10 row-lg-20 gutters-10">#}
+{#                                <div class="col-4 col-sm-6 col-md-12">#}
+{#                                    <!-- Product Minimal-->#}
+{#                                    <article class="product-minimal">#}
+{#                                        <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">#}
+{#                                            <div class="unit-left"><a#}
+{#                                                    class="product-minimal-figure"#}
+{#                                                    href=""><img#}
+{#                                                    src=""#}
+{#                                                    alt="" width="106"#}
+{#                                                    height="104"/></a></div>#}
+{#                                            <div class="unit-body">#}
+{#                                                <p class="product-minimal-title">#}
+{#                                                    <a href="">Весільний торт</a></p>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </article>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
                     </div>
                 </div>
                 <div class="col-lg-8 col-xl-9">
@@ -158,6 +158,7 @@
                         </div>
                     </div>
                     <div class="row row-30 row-lg-50">
+                    {% if products %}
                         {% for object in products %}
                         <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                             <!-- Product-->
@@ -174,6 +175,11 @@
                             </article>
                         </div>
                         {% endfor %}
+                    {% else %}
+                        <div class="col-lg-8 col-xl-9">
+                        <h4>Нічого не знайдено</h4>
+                        </div>
+                    {% endif %}
                     </div>
                     {% include 'pagination.html' %}
                 </div>

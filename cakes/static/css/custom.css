@@ -17,29 +17,8 @@
     margin-top: 15px;
 }
 
-/*Checkbox (radio)*/
-.checkbox-inline .radio-custom, .checkbox-inline .radio-custom-dummy {
-    top: 2px;
-    left: 0;
-    width: 21px;
-    height: 21px;
-    margin: 0;
-    border: 1px solid #e1e1e1;
-    border-radius: 3px;
-    position: absolute;
-    /*clip: rect(0,0,0,0);*/
-}
-
-.checkbox .radio-custom::after, .checkbox .radio-custom-dummy::after {
-    content: '\f222';
-    font-family: material design icons;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 20px;
-    line-height: 1;
+.radio-inline {
     color: #505050;
-    background: #fff;
 }
 
 /*Map*/
