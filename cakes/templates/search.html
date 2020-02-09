@@ -2,81 +2,83 @@
 {% load static %}
 
 {% block content %}
-<section class="breadcrumbs-custom">
-    <div class="parallax-container"
-         data-parallax-img="{% static 'images/bg-elements-1.jpg' %}">
-        <div class="breadcrumbs-custom-body parallax-content context-dark">
+    <section class="breadcrumbs-custom">
+        <div class="parallax-container"
+             data-parallax-img="{% static 'images/bg-elements-1.jpg' %}">
+            <div class="breadcrumbs-custom-body parallax-content context-dark">
+                <div class="container">
+                    <h1 class="breadcrumbs-custom-title">Результати пошуку</h1>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-custom-footer">
             <div class="container">
-                <h1 class="breadcrumbs-custom-title">Результати пошуку</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="{% url 'home' %}">Головна</a></li>
+                    <li class="active">Результати пошуку</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="breadcrumbs-custom-footer">
+    </section>
+    <!-- Search results-->
+    <section class="section section-xl bg-default">
         <div class="container">
-            <ul class="breadcrumbs-custom-path">
-                <li><a href="{% url 'home' %}">Головна</a></li>
-                <li class="active">Результати пошуку</li>
-            </ul>
-        </div>
-    </div>
-</section>
-<!-- Search results-->
-<section class="section section-xl bg-default">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-xl-9">
-                <!-- RD Search-->
-                <form class="rd-form rd-form-inline"
-                      action="." method="get">
-                    <div class="form-wrap">
-                        <input class="form-input"
-                               type="text" name="q" autocomplete="off">
-                        <label class="form-label" for="rd-search-form-input">Введіть
-                            свій пошуковий запит...</label>
-                    </div>
-                    <div class="form-button">
-                        <button class="button button-primary" type="submit">
-                            Шукати
-                        </button>
-                    </div>
-                </form>
-{#                <div class="rd-search-results">#}
-{##}
-{#                </div>#}
-                <!-- Shopping Cart-->
-                <section class="section section-xl bg-default">
-                    <div class="container">
-                        <!-- shopping-cart-->
-                        <div class="table-custom-responsive">
-                            <table class="table-custom table-cart">
-                                <thead>
-                                <tr>
-                                    <th>Назва продукту</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for product in products %}
-                                <tr>
-                                    <td><a class="table-cart-figure"
-                                           href="{{ product.get_absolute_url }}"><img
-                                            src="{{ product.images.all.first.image.url }}"
-                                            alt="" width="146"
-                                            height="132"/></a><a
-                                            class="table-cart-link"
-                                            href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
-
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-9">
+                    <!-- Search Form -->
+                    <form class="rd-form rd-form-inline"
+                          action="." method="get">
+                        <div class="form-wrap">
+                            <input class="form-input" id="rd-search-form-input"
+                                   type="text" name="q" autocomplete="off">
+                            <label class="form-label"
+                                   for="rd-search-form-input">Введіть
+                                свій пошуковий запит...</label>
                         </div>
-
+                        <div class="form-button">
+                            <button class="button button-primary" type="submit">
+                                Шукати
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Redults -->
+                    {% if products %}
+                        <div class="rd-search-results">
+                            <div id="search-results">
+                                <ol class="search-list">
+                                    {% for product in products %}
+                                        <li class="search-list-item">
+                                            <h5 class="search-title"><a
+                                                    target="_top"
+                                                    href="{{ product.get_absolute_url }}"
+                                                    class="search-link">
+                                                {{ product.title }}</a></h5>
+                                            <a class="table-cart-figure"
+                                               href="{{ product.get_absolute_url }}"><img
+                                                    src="{{ product.images.all.first.image.url }}"
+                                                    alt="" width="146"
+                                                    height="132"/></a>
+                                            <p>Категорія:
+                                                {% for category in product.category.all %}
+                                                    <span><a href="{{ category.get_absolute_url  }}">{{ category }}</a></span> {% endfor %}
+                                            </p>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- If not results -->
+                    {% else %}
+                        <div class="rd-search-results">
+                        <div id="search-results">
+                            <div class="container">
+                                <h4>Нічого не знайдено </h4>
+                            </div>
+                        </div>
+                    {% endif %}
                     </div>
-                </section>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<div class="custom-line"></div>
+    </section>
+    <div class="custom-line"></div>
 {% endblock %}
