@@ -38,7 +38,7 @@
                             {% url 'home' as home_url %}
                             {% url 'products' as products_url %}
                             {% url 'rules' as rules_url %}
-{#                            {% url "home" as home_url %}#}
+                            {% url "about" as about_url %}
                             {% url 'contacts' as contacts_url %}
                             <li class="rd-nav-item {% if request.path == home_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'home' %}">Головна</a>
@@ -67,8 +67,8 @@
 {#                                        Blog</a>#}
 {#                                    </li>#}
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
-                                                       href="">Про мене</a>
+                            <li class="rd-nav-item {% if request.path == about_url %}active{% endif %}"><a class="rd-nav-link"
+                                                       href="{% url 'about' %}">Про мене</a>
                             </li>
                             <li class="rd-nav-item {% if request.path == contacts_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'contacts' %}">Контакти</a>
