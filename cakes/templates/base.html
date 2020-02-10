@@ -7,7 +7,11 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0">
-    <script src="../cdn-cgi/apps/head/3ts2ksMwXvKRuG480KNifJ2_JNM.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% block description %}<meta name="description" content="Домашні торти на замовлення Житомир Купити торт на замовлення великий вибір оригінальних замовних тортів ">{% endblock %}
+    <meta name="keywords" content="торт, домашній, замовлення, купити, замовити, Житомир">
+    <meta property="og:title" content="Торти на замовлення Житомир. Замовити торт з доставкою по Житомиру | UFL">
+    <link rel="alternate" href="https://tortulka.pythonenywhere.com" hreflang="uk-UA">
     <link rel="icon" href="{% static 'images/favicon+.ico' %}"
           type="image/x-icon">
     <link rel="stylesheet"
@@ -16,12 +20,12 @@
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CLato%7CLora">
-    {#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 </head>
 <body>
+<!-- Page preloader -->
 <div class="preloader">
     <div class="preloader-body">
         <div class="cssload-bell">
@@ -43,20 +47,20 @@
         </div>
     </div>
 </div>
+<!-- End page preloader -->
 <div class="page">
     <!-- Page Header-->
-    {% include 'header.html' %}
+    {% block header %}{% include 'header.html' %}{% endblock %}
 
-    <!-- MAin content -->
+    <!-- Main content -->
     {% block content %}{% endblock %}
 
     <!-- Page Footer-->
-    {% include 'footer.html' %}
+    {% block footer %}{% include 'footer.html' %}{% endblock %}
 </div>
-<div class="snackbars" id="form-output-global"></div>
 <script src="{% static 'js/core.min.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
-
+<script src="{% static 'js/custom.js' %}"></script>
+{% block extra_js %}{% endblock %}
 </body>
-
 </html>

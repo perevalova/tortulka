@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cache %}
 
+{% block title %}Тортулька Домашні торти | Житомир{% endblock %}
 {% block content %}
     <!-- Swiper-->
     <section class="section swiper-container swiper-slider swiper-slider-4"
@@ -239,6 +241,8 @@
         </div>
     </section>
     <!-- New Flavors-->
+
+    {% cache 86400 products %}
     <section class="section section-xxl bg-primary-2">
         <div class="container">
             <h2 class="text-transform-capitalize wow fadeScale">Продукція
@@ -258,10 +262,17 @@
                                     href="{{ product.get_absolute_url }}">{{ product.title }}</a>
                             </h5>
                         </div>
+                        <div class="product-button-wrap">
+                            <div class="product-button"><a
+                                    class="button button-gray-14 button-zakaria fl-bigmug-line-search74"
+                                    href="{{ product.get_absolute_url }}"></a>
+                            </div>
+                        </div>
                     </article>
                 </div>
                     {% endfor %}
             </div>
         </div>
     </section>
+    {% endcache %}
 {% endblock %}

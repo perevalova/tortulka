@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
+{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. Торт {{ object.title }} Тортулька Житомир ">{% endblock %}
+{% block title %}Торт {{ object.title }} Тортулька{% endblock %}
 
+{% block content %}
 <section class="breadcrumbs-custom">
     <div class="parallax-container" data-parallax-img="{% static 'images/bg-shop.jpg' %}">
         <div class="breadcrumbs-custom-body parallax-content context-dark">
@@ -33,6 +35,7 @@
                          id="carousel-parent" data-items="1"
                          data-swipe="true" data-child="#child-carousel"
                          data-for="#child-carousel">
+                    {% if object.images.all %}
                         {% for image in object.images.all %}
                         <div class="item">
                             <div class="slick-product-figure-first"><img
@@ -41,6 +44,14 @@
                             </div>
                         </div>
                         {% endfor %}
+                    {% else %}
+                        <div class="item">
+                            <div class="slick-product-figure"><img
+                                    src="{% static 'images/default.jpg' %}"
+                                    alt="" width="530" height="480"/>
+                            </div>
+                        </div>
+                    {% endif %}
                     </div>
                     <div class="slick-slider child-carousel slick-nav-1"
                          id="child-carousel" data-arrows="true"
@@ -48,6 +59,7 @@
                          data-lg-items="3" data-xl-items="3"
                          data-xxl-items="3" data-md-vertical="true"
                          data-for="#carousel-parent">
+                    {% if object.images.all %}
                         {% for image in object.images.all %}
                         <div class="item">
                             <div class="slick-product-figure"><img
@@ -56,6 +68,14 @@
                             </div>
                         </div>
                         {% endfor %}
+                    {% else %}
+                        <div class="item">
+                            <div class="slick-product-figure"><img
+                                    src="{% static 'images/default.jpg' %}"
+                                    alt="" width="530" height="480"/>
+                            </div>
+                        </div>
+                    {% endif %}
                     </div>
                 </div>
             </div>

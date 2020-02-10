@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cache %}
 
+{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. На будь-яке свято, будь-якої складності.">{% endblock %}
+{% block title %}Категорії Продукції Тортулька{% endblock %}
+{% cache 21600 category %}
 {% block content %}
     <section class="breadcrumbs-custom">
         <div class="parallax-container" data-parallax-img="{% static 'images/bg-blog.jpg' %}">
@@ -28,9 +32,17 @@
                     <!-- Post Classic-->
                     <article class="post post-classic box-md"><a
                             class="post-classic-figure"
-                            href="{{ category.get_absolute_url }}"><img
+                            href="{{ category.get_absolute_url }}">
+                        {% if category.image %}
+                        <img
                             src="{{ category.image.url }}" alt="" width="370"
-                            height="239"/></a>
+                            height="239"/>
+                        {% else %}
+                        <img
+                            src="{% static 'images/default.jpg' %}" alt="" width="370"
+                            height="239"/>
+                        {% endif %}
+                    </a>
                         <div class="post-classic-content">
                             <h4 class="post-classic-title"><a
                                     href="{{ category.get_absolute_url }}">{{ category.title }}</a></h4>
@@ -43,3 +55,4 @@
         </div>
     </section>
 {% endblock %}
+{% endcache %}

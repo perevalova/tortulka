@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block description %}<meta name="description" content="Контакти Тортулька. Домашні торти на замовлення Житомир. Купити торт Тортулька Житомир ">{% endblock %}
+{% block title %}Контакти Тортулька{% endblock %}
+
 {% block content %}
     <section class="breadcrumbs-custom">
         <div class="parallax-container"
@@ -20,7 +23,7 @@
             </div>
         </div>
     </section>
-    <!-- Get in touch-->
+    <!-- Send email -->
     <section class="section section-xl bg-default text-md-left">
         <div class="container">
             <div class="title-classic">
@@ -36,10 +39,7 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <form class="rd-form rd-mailform"
-                  data-form-output="form-output-global" data-form-type="contact"
-                  method="post"
-                  action=".">
+            <form class="rd-form rd-mailform" method="post" action=".">
                 {% csrf_token %}
                 <div class="row row-20 row-md-30">
                     <div class="col-lg-8">
@@ -113,6 +113,7 @@
             </div>
         </div>
     </section>
+    <!-- Map -->
     <div class="container">
         <div class="row row-30 justify-content-center">
             <div class="col-sm-12 col-md-12">
@@ -120,7 +121,7 @@
             </div>
         </div>
     </div>
-<div class="snackbars" id="form-output-global"></div>
+    <!-- End Map -->
 {% endblock %}
 {% block  extra_js %}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPb_FegVna1pZbCSFhx3qimQdG6wF0mzw&callback=initMap"
