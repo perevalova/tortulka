@@ -51,6 +51,7 @@ class Product(models.Model):
         }
         return reverse('product_detail', kwargs=kwargs)
 
+
 class Image(models.Model):
     image = models.ImageField(upload_to='products/', blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
