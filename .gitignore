@@ -58,3 +58,4 @@ db*
 # Ignore media
 /media/
 
+/django_cache/
