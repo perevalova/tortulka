@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}404 Сторінка не знайдена{% endblock %}
+
+{% block content %}
+    <section class="section section-single context-dark bg-image"
+             style="background-image: url({% static 'images/bg-404.jpg' %});">
+        <div class="section-single-inner">
+            <header class="section-single-header page-header">
+                <div class="page-head-inner">
+                    <!--Brand--><a class="brand" href="index.html"><img
+                        class="brand-logo-dark"
+                        src="{% static 'images/tortulka_logo1.png' %}" alt=""
+                        width="156"
+                        height="46"/></a>
+                </div>
+            </header>
+            <div class="section-single-main">
+                <div class="container">
+                    <div class="title-modern">404</div>
+                    <h3 class="font-weight-light text-spacing-100">Сторінка Не
+                        Знайдена</h3><a
+                        class="button button-sm button-primary button-zakaria"
+                        href="{% url 'home' %}">Вернутися на головну
+                    сторінку</a>
+                </div>
+            </div>
+            <div class="section-single-footer">
+                <div class="container text-center">
+                    <p class="rights"><span>&copy;&nbsp; </span><span
+                            class="copyright-year"></span><span>&nbsp;</span><span>Тортулька</span><span>.&nbsp; Усі права збережено.</span><span>&nbsp;</span>
+                        Розроблено <a
+                    href="https://github.com/perevalova">perevalova</a><span>.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
