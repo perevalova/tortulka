@@ -54,20 +54,11 @@ def filtering(request, object_list):
         object_list = object_list.filter(
             title__icontains=search_product)
 
-    # ordering
-    order_by = request.GET.get('order_by', '')
-    if order_by == 'newest':
-        object_list = object_list.order_by('-added', 'id')
-    elif order_by == 'oldest':
-        object_list = object_list.order_by('added', 'id')
-    elif order_by == 'abc':
-        object_list = object_list.order_by('title', 'id')
-
     # filter by category
     category_filter = request.GET.get('category', '')
     if category_filter == 'all':
         object_list = object_list
-    elif category_filter == 'all':
+    elif category_filter:
         object_list = object_list.filter(category__slug=category_filter)
 
     # filter by tiers
@@ -76,5 +67,14 @@ def filtering(request, object_list):
         object_list = object_list
     elif tiers_filter:
         object_list = object_list.filter(category__slug=tiers_filter)
+
+    # ordering
+    order_by = request.GET.get('order_by', '')
+    if order_by == 'newest':
+        object_list = object_list.order_by('-added', 'id')
+    elif order_by == 'oldest':
+        object_list = object_list.order_by('added', 'id')
+    elif order_by == 'abc':
+        object_list = object_list.order_by('title', 'id')
 
     return object_list

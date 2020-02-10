@@ -35,7 +35,7 @@ class ProductList(ListView):
         product_list = Product.objects.filter(category__slug=self.kwargs['slug']).prefetch_related('category', 'images')
 
         # filter objects
-        filtering(self.request, product_list)
+        product_list = filtering(self.request, product_list)
 
         return product_list
 
@@ -45,6 +45,7 @@ class ProductList(ListView):
         product_amount = self.get_queryset().count()
         context = paginate(self.get_queryset(), self.paginate_by, self.request,
                            context, var_name='products')
+        context['category'] = self.kwargs['slug']
         context['product_amount'] = product_amount
 
         return context

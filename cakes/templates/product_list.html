@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. Торти {{ category }} Тортулька Житомир ">{% endblock %}
+{% block title %}Торти {{ category }} Тортулька{% endblock %}
+
 {% block content %}
     <section class="breadcrumbs-custom">
         <div class="parallax-container" data-parallax-img="{% static 'images/bg-img-1.jpg' %}">
@@ -27,7 +30,7 @@
             <!-- Filter products -->
                 <div class="col-lg-4 col-xl-3">
                     <div class="aside row row-30 row-md-50 justify-content-md-between">
-                        <form action="." method="get">
+                        <form action="" method="get">
                         <!-- Filter by category -->
                         <div class="aside-item col-sm-6 col-md-5 col-lg-12">
                             <h6 class="aside-title">Категорії</h6>
@@ -67,8 +70,9 @@
                                 <li>
                                     <label class="radio-inline">
                                         <input name="category"
-                                               value="checkbox-4"
-                                               type="radio">Інше
+                                               value="krem-chiz"
+                                               type="radio" {% ifequal request.GET.category 'krem-chiz' %}
+                                       checked="checked" {% endifequal %}>Крем чиз
                                     </label>
                                 </li>
                             </ul>
@@ -170,8 +174,8 @@
                             <div class="group-sm group-middle">
                                 <div class="product-top-panel-sorting">
                                     <span>
-                                        <a href="{% url 'product_list' 'tort-na-den-narodzhennya' %}?page={{ product_list.number }}&amp;order_by=newest">Новее</a> |
-                                        <a href="{% url 'product_list' 'tort-na-den-narodzhennya' %}?page={{ product_list.number }}&amp;order_by=oldest">Старее</a>
+                                        <a href="{% url 'product_list' view.kwargs.slug %}?{% if request.GET.page %}page={{ product_list.number }}&amp;{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&amp;{% endif %}{% if request.GET.tiers %}tiers={{ request.GET.tiers }}&amp;{% endif %}order_by=newest">Новее</a> |
+                                        <a href="{% url 'product_list' view.kwargs.slug %}?{% if request.GET.page %}page={{ product_list.number }}&amp;{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&amp;{% endif %}{% if request.GET.tiers %}tiers={{ request.GET.tiers }}&amp;{% endif %}order_by=oldest">Старее</a>
                                     </span>
                                 </div>
                             </div>
@@ -184,14 +188,26 @@
                         <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                             <article class="product">
                                 <div class="product-body">
+                                    {% if object.images.all %}
                                     <div class="product-figure"><img
                                             src="{{ object.images.all.first.image.url }}"
                                             alt="" width="220" height="160"/>
                                     </div>
+                                    {% else %}
+                                    <div class="product-figure"><img
+                                            src="{% static 'images/default.jpg' %}"
+                                            alt="" width="220" height="160"/>
+                                    </div>
+                                    {% endif %}
                                     <h5 class="product-title"><a
                                             href="{{ object.get_absolute_url }}">{{ object.title }}</a></h5>
                                 </div>
-{#                                <span class="product-badge product-badge-sale">Sale</span>#}
+                                <div class="product-button-wrap">
+                                    <div class="product-button"><a
+                                            class="button button-gray-14 button-zakaria fl-bigmug-line-search74"
+                                            href="{{ object.get_absolute_url }}"></a>
+                                    </div>
+                                    {#                                <span class="product-badge product-badge-sale">Sale</span>#}
                             </article>
                         </div>
                         {% endfor %}
