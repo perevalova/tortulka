@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. Замовити торт Житомир. Виготовлення тортів Тортулька.">{% endblock %}
+{% block title %}Про мене{% endblock %}
+
+{% block content %}
+<section class="breadcrumbs-custom">
+    <div class="parallax-container"
+         data-parallax-img="{% static 'images/bg-elements-1.jpg' %}">
+        <div class="breadcrumbs-custom-body parallax-content context-dark">
+            <div class="container">
+                <h1 class="breadcrumbs-custom-title">Про мене</h1>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumbs-custom-footer">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li class="active">Про мене</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Privacy Policy-->
+<section class="section section-xxl bg-default text-md-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-xl-3">
+                <img src="{% static 'images/Na3aie4l96Y-02.jpeg' %}" alt="">
+            </div>
+            <div class="col-lg-8 col-xl-9">
+                <!-- Terms list-->
+                <dl class="list-terms list-terms-1" id="about">
+                    <dt class="heading-4">Вітаю Вас на сайті!</dt>
+                    <dd>Мене звати Алла. Вже понад 30 років я є кондитером і втілюю ваші солодкі мрії в реальність!
+                    </dd>
+{#                    соц мережі#}
+                    <dt class="heading-4"></dt>
+                    <dd>Мої вироби припадуть до смаку кожному. Випічка
+                        виходить такою смачною, тому що я використовую
+                        натуральні інгредієнти та вкладаю в неї свою любов.
+
+                    </dd>
+                    <dt class="heading-4"></dt>
+                    <dd>Маючи багаторічний досвід я можу виготовити торт, який
+                        Вам однозначно сподобається!
+                        Тому якщо Ви хочете замовити солодощі, смак яких
+                        подарує справжню насолоду, я готова втілити всі
+                        Ваші задуми в реальність.
+                    </dd>
+                    <dt class="heading-4">Замовлення</dt>
+                    <dd>Для того, щоб замовити торт Ви можете зателефонувати
+                        мені за номерами зазначеними нижче.
+                    </dd>
+                    <dt class="heading-4"></dt>
+                    <dd>Також шукайте мене в соціальних мережах!
+                    </dd>
+
+                    <ul class="list-inline list-social list-inline-lg">
+                        <li><a class="icon mdi mdi-facebook" target="_blank"
+                               title="Facebook"
+                               href="https://www.facebook.com/cakesalla"></a>
+                        </li>
+                        <li><a class="icon mdi mdi-instagram" target="_blank"
+                               title="Instagram"
+                               href="https://instagram.com/cakes_zt"></a></li>
+                        <li><a class="icon mdi mdi-telegram" target="_blank"
+                               title="Telegram"
+                               href="https://t.me/joinchat/AAAAAFdTfGfta9EtZFXJGw"></a>
+                        </li>
+                    </ul>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="custom-line"></div>
+
+{% endblock %}

@@ -120,5 +120,10 @@ class SearchView(ListView):
 
         return context
 
+
 class RulesView(TemplateView):
     template_name = 'rules.html'
+
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
