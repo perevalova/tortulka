@@ -3,18 +3,6 @@
     text-align: center;
 }
 
-/*Product detail (Image)*/
-.slick-product-figure-first {
-    width: 530px;
-    height: auto;
-}
-
-.slick-product-figure-first img {
-    width: 100%;
-    height: auto;
-}
-
-
 /*Product list*/
 .tiers-filter{
     margin-top: 15px;
