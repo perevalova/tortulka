@@ -3,6 +3,8 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 
+from smtplib import SMTPServerDisconnected, SMTPConnectError
+
 from cakes.models import Category, Product
 from tortulka.settings import CONTACT_EMAIL
 from .forms import ContactForm
@@ -78,18 +80,22 @@ class ContactsView(FormView):
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
         phone_number = form.cleaned_data['phone_number']
-        subject = f'{first_name} {last_name}, {phone_number}'
         email = form.cleaned_data['email']
+        subject = f'{first_name} {last_name}, {email}, {phone_number}'
         message = form.cleaned_data['message']
 
         # sending letter
-        send_mail(subject, message, email, [CONTACT_EMAIL])
-        messages.success(self.request, 'Лист успішно надісланий!')
+        try:
+            send_mail(subject, message, email, [CONTACT_EMAIL])
+            messages.success(self.request, 'Лист успішно надісланий!')
+        except (SMTPServerDisconnected, SMTPConnectError):
+            messages.warning(self.request,
+                             'Під час надсилання листа сталася несподівана помилка. Спробуйте скористатися цією формою пізніше.')
 
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.warning(self.request, 'Під час надсилання листа сталася несподівана помилка. Спробуйте скористатися цією формою пізніше.')
+        messages.warning(self.request, 'Перевірте, будь ласка, форму на помилки.')
         return super().form_invalid(form)
 
 
