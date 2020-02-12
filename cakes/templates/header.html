@@ -30,7 +30,7 @@
                                            href="{% url 'home' %}"><img
                                 class="brand-logo-dark"
                                 src="{% static 'images/tortulka_logo1.png' %}" alt=""
-                                width="156" height="46"/</a>
+                                width="156" height="46"/></a>
                         </div>
                     </div>
                     <div class="rd-navbar-nav-wrap">
@@ -45,27 +45,24 @@
                             </li>
                             <li class="rd-nav-item {% if request.path == products_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'products' %}">Продукція</a>
-{#                                <ul class="rd-menu rd-navbar-dropdown">#}
-{#                                    <li class="rd-dropdown-item"><a#}
-{#                                            class="rd-dropdown-link"#}
-{#                                            href="about-us.html">About#}
-{#                                        Us</a>#}
-{#                                    </li>#}
-{#                                    <li class="rd-dropdown-item"><a#}
-{#                                            class="rd-dropdown-link"#}
-{#                                            href="what-we-offer.html">What#}
-{#                                        We Offer</a>#}
-{#                                    </li>#}
-{#                                </ul>#}
+
                             </li>
                             <li class="rd-nav-item {% if request.path == rules_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'rules' %}">Правила</a>
-{#                                <ul class="rd-menu rd-navbar-dropdown">#}
-{#                                    <li class="rd-dropdown-item"><a#}
-{#                                            class="rd-dropdown-link"#}
-{#                                            href="grid-blog.html">Grid#}
-{#                                        Blog</a>#}
-{#                                    </li>#}
+                                <ul class="rd-menu rd-navbar-dropdown">
+                                    <li class="rd-dropdown-item"><a
+                                            class="rd-dropdown-link"
+                                            href="{% url 'rules' %}#ordering">Замовлення</a>
+                                    </li>
+                                    <li class="rd-dropdown-item"><a
+                                            class="rd-dropdown-link"
+                                            href="{% url 'rules' %}#cost">Вартість</a>
+                                    </li>
+                                    <li class="rd-dropdown-item"><a
+                                            class="rd-dropdown-link"
+                                            href="{% url 'rules' %}#delivery">Доставка</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="rd-nav-item {% if request.path == about_url %}active{% endif %}"><a class="rd-nav-link"
                                                        href="{% url 'about' %}">Про мене</a>
