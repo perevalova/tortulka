@@ -2,15 +2,17 @@
 {% load static %}
 {% load cache %}
 
-{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. На будь-яке свято, будь-якої складності.">{% endblock %}
-{% block title %}Категорії Продукції Тортулька{% endblock %}
+{% block title %}Категорії Продукції - Тортулька{% endblock %}
+{% block description %}<meta name="description" content="Домашні торти на замовлення у Житомирі. На будь-яке свято, будь-якої складності.">{% endblock %}
+{% block og_title %}<meta name="og:title" content="Категорії Продукції - Тортулька">{% endblock %}
+
 {% cache 21600 category %}
 {% block content %}
     <section class="breadcrumbs-custom">
         <div class="parallax-container" data-parallax-img="{% static 'images/bg-blog.jpg' %}">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
-                    <h1 class="breadcrumbs-custom-title">Категорія</h1>
+                    <h1 class="breadcrumbs-custom-title">Категорії</h1>
                 </div>
             </div>
         </div>

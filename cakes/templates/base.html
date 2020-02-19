@@ -8,9 +8,14 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. Тортулька - це завжди свято та гарний настрій! Замовити та купити торт на Тортулька в Житомирі.">{% endblock %}
+    {% block description %}<meta name="description" content="Домашні торти на замовлення в місті Житомир. Тортулька - це завжди свято та гарний настрій! Замовити та купити торт на Тортулька в Житомирі.">{% endblock %}
     <meta name="keywords" content="торт, домашній, замовлення, купити, замовити, Житомир">
-    <meta property="og:title" content="Торти на замовлення Житомир. Замовити домашній торт у Житомирі">
+    {% block og_title %}<meta name="og:title" content="Домашні торти | Житомир - Тортулька">{% endblock %}
+    {% block og_description %}<meta name="og:description"
+          content="Домашні торти на замовлення в місті Житомир. Тортулька - це завжди свято та гарний настрій! Замовити та купити торт на Тортулька в Житомирі.">{% endblock %}
+    {% block og_url %}<meta name="og:url" content="https://tortulka.pythonanywhere.com">{% endblock %}
+    <meta name="og:site_name" content="Тортулька">
+    <meta name="og:locale" content="uk_UK">
     <link rel="alternate" href="https://tortulka.pythonanywhere.com" hreflang="uk-UA">
     <link rel="icon" href="{% static 'images/favicon.ico' %}"
           type="image/x-icon">

@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. Торт {{ object.title }} Тортулька Житомир ">{% endblock %}
-{% block title %}Торт {{ object.title }} Тортулька{% endblock %}
+{% block title %}Торт {{ object.title }} - Тортулька{% endblock %}
+{% block description %}<meta name="description" content="Торт {{ object.title }} - Тортулька | Житомир. Домашні торти на замовлення в місті Житомир.">{% endblock %}
+{% block og_title %}<meta name="og:title" content="Домашні торти | Житомир - Тортулька">{% endblock %}
+{% block og_description %}<meta name="og:description"
+          content="Торт {{ object.title }} - Тортулька | Житомир. Домашні торти на замовлення в місті Житомир.">{% endblock %}
 
 {% block content %}
 <section class="breadcrumbs-custom">

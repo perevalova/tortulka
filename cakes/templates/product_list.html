@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block description %}<meta name="description" content="Домашні торти на замовлення Житомир. Торти {{ category }} Тортулька Житомир ">{% endblock %}
-{% block title %}Торти {{ category }} Тортулька{% endblock %}
+{% block title %}Торти {{ category }} - Тортулька, Житомир{% endblock %}
+{% block description %}<meta name="description" content="Торти {{ category }}. Обрати торт на будь-яке свято. Домашні торти на замовлення у Житомирі на Тортулька.">{% endblock %}
+{% block og_title %}<meta name="og:title" content="Торти {{ category }} - Тортулька, Житомир">{% endblock %}
+{% block og_description %}<meta name="og:description"
+          content="Торти {{ category }}. Домашні торти на замовлення у Житомирі на Тортулька.">{% endblock %}
+
 
 {% block content %}
     <section class="breadcrumbs-custom">
         <div class="parallax-container" data-parallax-img="{% static 'images/bg-img-1.jpg' %}">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
-                    <h1 class="breadcrumbs-custom-title">Категорії</h1>
+                    <h1 class="breadcrumbs-custom-title">{{ category.title }}</h1>
                 </div>
             </div>
         </div>
@@ -168,7 +172,7 @@
             <!-- End filter products -->
                 <div class="col-lg-8 col-xl-9">
                     <div class="product-top-panel group-md">
-                        <p class="product-top-panel-title">Усього {{ product_amount }}
+                        <p class="product-top-panel-title">Усього {{ object_list.count }}
                             </p>
                         <div>
                             <div class="group-sm group-middle">
@@ -182,9 +186,9 @@
                         </div>
                     </div>
                     <div class="row row-30 row-lg-50">
-                    {% if products %}
+                    {% if object_list %}
                         <!-- Product-->
-                        {% for object in products %}
+                        {% for object in object_list %}
                         <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                             <article class="product">
                                 <div class="product-body">
@@ -207,6 +211,7 @@
                                             class="button button-gray-14 button-zakaria fl-bigmug-line-search74"
                                             href="{{ object.get_absolute_url }}"></a>
                                     </div>
+                                </div>
                                     {#                                <span class="product-badge product-badge-sale">Sale</span>#}
                             </article>
                         </div>
