@@ -55,3 +55,6 @@ class Product(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='products/', blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+
+    class Meta:
+        ordering = ['-image']

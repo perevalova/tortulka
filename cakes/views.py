@@ -29,7 +29,6 @@ class ProductList(ListView):
     """
     Page with product list for specific category
     """
-    model = Product
     template_name = 'product_list.html'
     paginate_by = 12
 
@@ -44,11 +43,9 @@ class ProductList(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        product_amount = self.get_queryset().count()
         context = paginate(self.get_queryset(), self.paginate_by, self.request,
-                           context, var_name='products')
-        context['category'] = self.kwargs['slug']
-        context['product_amount'] = product_amount
+                           context)
+        context['category'] = Category.objects.get(slug=self.kwargs['slug'])
 
         return context
 
