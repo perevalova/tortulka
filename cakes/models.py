@@ -1,6 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.core.files import File
+
+from io import BytesIO
+from PIL import Image as PILImage
 
 
 class Category(models.Model):
@@ -52,9 +56,27 @@ class Product(models.Model):
         return reverse('product_detail', kwargs=kwargs)
 
 
+def compress(image):
+    """
+    Compress image
+    """
+    im = PILImage.open(image)
+    im_io = BytesIO()
+    im.save(im_io, 'JPEG', quality=50)
+    new_image = File(im_io, name=image.name)
+
+    return new_image
+
+
 class Image(models.Model):
     image = models.ImageField(upload_to='products/', blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
 
     class Meta:
         ordering = ['-image']
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            new_image = compress(self.image)
+            self.image = new_image
+        super().save(*args, **kwargs)
