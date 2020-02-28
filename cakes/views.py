@@ -109,7 +109,7 @@ class SearchView(ListView):
         search_product = self.request.GET.get('q', '')
         products = Product.objects.none()
         if search_product:
-            products = Product.objects.filter(title__icontains=search_product).prefetch_related('category', 'images')
+            products = Product.objects.filter(title__search=search_product).prefetch_related('category', 'images')
 
         return products
 
