@@ -1,3 +1,4 @@
+import logging
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
@@ -88,11 +89,15 @@ class ContactsView(FormView):
         except (SMTPServerDisconnected, SMTPConnectError):
             messages.warning(self.request,
                              'Під час надсилання листа сталася несподівана помилка. Спробуйте скористатися цією формою пізніше.')
+            logger = logging.getLogger(__name__)
+            logger.exception(messages)
 
         return super().form_valid(form)
 
     def form_invalid(self, form):
         messages.warning(self.request, 'Перевірте, будь ласка, форму на помилки.')
+        logger = logging.getLogger(__name__)
+        logger.exception(messages)
         return super().form_invalid(form)
 
 
