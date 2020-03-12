@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
 
     # 3-rd party
     'debug_toolbar',
@@ -166,3 +167,53 @@ else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 CONTACT_EMAIL = 'tortulk4@gmail.com'
+ADMIN_EMAIL = config('ADMIN_EMAIL')
+
+# Logging
+LOG_FILE = os.path.join(BASE_DIR, 'tortulka.log')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(pathname)s: %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE,
+            'formatter': 'verbose'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'cakes.views': {
+            'handlers': ['console', 'file', 'mail_admins'],
+            'level': 'INFO',
+        }
+    }
+}

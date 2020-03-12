@@ -9,6 +9,11 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 
+class ImageAdmin(admin.ModelAdmin):
+    list_per_page = 20
+    ordering = ('product',)
+
+
 class ImageInline(admin.TabularInline):
     model = Image
 
@@ -24,3 +29,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Image, ImageAdmin)

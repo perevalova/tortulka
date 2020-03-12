@@ -1,3 +1,4 @@
+import logging
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
@@ -88,11 +89,15 @@ class ContactsView(FormView):
         except (SMTPServerDisconnected, SMTPConnectError):
             messages.warning(self.request,
                              'Під час надсилання листа сталася несподівана помилка. Спробуйте скористатися цією формою пізніше.')
+            logger = logging.getLogger(__name__)
+            logger.exception(messages)
 
         return super().form_valid(form)
 
     def form_invalid(self, form):
         messages.warning(self.request, 'Перевірте, будь ласка, форму на помилки.')
+        logger = logging.getLogger(__name__)
+        logger.exception(messages)
         return super().form_invalid(form)
 
 
@@ -109,7 +114,7 @@ class SearchView(ListView):
         search_product = self.request.GET.get('q', '')
         products = Product.objects.none()
         if search_product:
-            products = Product.objects.filter(title__icontains=search_product).prefetch_related('category', 'images')
+            products = Product.objects.filter(title__search=search_product).prefetch_related('category', 'images')
 
         return products
 
