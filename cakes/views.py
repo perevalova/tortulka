@@ -1,6 +1,7 @@
 import logging
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 
@@ -8,7 +9,7 @@ from smtplib import SMTPServerDisconnected, SMTPConnectError
 
 from cakes.models import Category, Product
 from tortulka.settings import CONTACT_EMAIL
-from .forms import ContactForm
+from .forms import ContactForm, SubscriberForm
 from .util import paginate, filtering
 
 
@@ -18,7 +19,15 @@ class MainPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product_list'] = Product.objects.all()[:8].prefetch_related('category', 'images')
+        context['form'] = SubscriberForm
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = SubscriberForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, 'Ви успішно підписалися!')
+        return redirect('home')
 
 
 class CategoryView(ListView):

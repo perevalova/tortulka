@@ -1,5 +1,8 @@
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 
+from .models import Subscriber
+from .tasks import send_news_email
+
 
 def paginate(objects, size, request, context, var_name='object_list'):
     """Paginate objects provided by view.
@@ -78,3 +81,15 @@ def filtering(request, object_list):
         object_list = object_list.order_by('title', 'id')
 
     return object_list
+
+
+def send_newsletter(subject, message):
+    """
+    Send letter to newsletter subscribers
+    :param subject: str - subject of letter
+    :param message:  str - message of letter
+    :return: None
+    """
+    subscribers = list(Subscriber.objects.values_list('email', flat=True))
+    for subscriber in subscribers:
+        send_news_email.delay(subject, message, subscriber)

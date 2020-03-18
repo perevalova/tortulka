@@ -80,3 +80,26 @@ class Image(models.Model):
             new_image = compress(self.image)
             self.image = new_image
         super().save(*args, **kwargs)
+
+
+class NewsLetter(models.Model):
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.subject
+
+    def save(self, *args, **kwargs):
+        from cakes.util import send_newsletter
+        send_newsletter(self.subject, self.message)
+        return super().save(*args, **kwargs)
+
+
+class Subscriber(models.Model):
+    email = models.EmailField()
+
+    class Meta:
+        ordering = ['email']
+
+    def __str__(self):
+        return self.email
