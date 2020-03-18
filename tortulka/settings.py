@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # 3-rd party
     'debug_toolbar',
+    'django_summernote',
 
     # local
     'cakes.apps.CakesConfig',
@@ -131,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uk'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
