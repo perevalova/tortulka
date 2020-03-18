@@ -1,6 +1,7 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 
-from cakes.models import Image, Product, Category
+from cakes.models import Image, Product, Category, Subscriber, NewsLetter
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -27,6 +28,23 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ImageInline,]
 
 
+class NewsLetterAdmin(SummernoteModelAdmin, admin.ModelAdmin):
+    list_display = ('subject',)
+    list_filter = ('subject',)
+    search_fields = ('subject',)
+    list_per_page = 20
+    summernote_fields = ('message',)
+
+
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email',)
+    list_filter = ('email',)
+    search_fields = ('email',)
+    list_per_page = 20
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Image, ImageAdmin)
+admin.site.register(NewsLetter, NewsLetterAdmin)
+admin.site.register(Subscriber, SubscriberAdmin)

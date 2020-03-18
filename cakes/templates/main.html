@@ -4,6 +4,12 @@
 
 {% block title %}Домашні торти | Житомир - Тортулька{% endblock %}
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}"
+                 role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     <!-- Swiper-->
     <section class="section swiper-container swiper-slider swiper-slider-4"
              data-loop="true" data-effect="fade">
@@ -277,4 +283,41 @@
         </div>
     </section>
     {% endcache %}
+    <!-- Subscribe to Our Newsletter-->
+    <section class="parallax-container"
+             data-parallax-img="{% static 'images/parallax-1.jpg' %}">
+        <div class="parallax-content section-xxl context-dark text-md-left">
+            <div class="container">
+                <div class="row row-30 justify-content-center align-items-center align-items-md-end">
+                    <div class="col-lg-3">
+                        <h3 class="text-spacing-100 wow fadeInLeft">Залишайтеся <span
+                                class="font-weight-light">на зв'язку</span>
+                        </h3>
+                        <p class="wow fadeInLeft" data-wow-delay=".1s">Підпишіться на нашу розсилку</p>
+                    </div>
+                    <div class="col-lg-8 col-xl-9 inset-lg-bottom-10">
+                        <!-- RD Mailform-->
+                        <form class="rd-form rd-mailform rd-form-inline form-lg rd-form-text-center"
+                              data-form-output="form-output-global"
+                              data-form-type="subscribe" method="post"
+                              action="">
+                            {% csrf_token %}
+                            <div class="form-wrap wow fadeInUp">
+                                <input class="form-input" type="email" name="email" maxlength="254" required="" id="id_email"/>
+                                <label class="form-label"
+                                       for="id_email">Введіть свою
+                                    поштову адресу</label>
+                                    {{ form.email.errors }}
+                            </div>
+                            <div class="form-button wow fadeInRight">
+                                <button class="button button-shadow-2 button-zakaria button-lg button-primary"
+                                        type="submit">Підписатися
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
