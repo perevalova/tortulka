@@ -26,7 +26,10 @@ class MainPageView(TemplateView):
         form = SubscriberForm(data=request.POST)
         if form.is_valid():
             form.save()
-            messages.success(self.request, 'Ви успішно підписалися!')
+            messages.success(self.request,
+                             'Ви успішно підписалися на розсилку!')
+        else:
+            messages.warning(self.request, 'Ви вже підписані на розсилку!')
         return redirect('home')
 
 
