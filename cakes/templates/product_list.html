@@ -178,8 +178,8 @@
                             <div class="group-sm group-middle">
                                 <div class="product-top-panel-sorting">
                                     <span>
-                                        <a href="{% url 'product_list' view.kwargs.slug %}?{% if request.GET.page %}page={{ product_list.number }}&amp;{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&amp;{% endif %}{% if request.GET.tiers %}tiers={{ request.GET.tiers }}&amp;{% endif %}order_by=newest">Новее</a> |
-                                        <a href="{% url 'product_list' view.kwargs.slug %}?{% if request.GET.page %}page={{ product_list.number }}&amp;{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&amp;{% endif %}{% if request.GET.tiers %}tiers={{ request.GET.tiers }}&amp;{% endif %}order_by=oldest">Старее</a>
+                                        <a href="{% url 'product_list' view.kwargs.slug %}?{% if request.GET.page %}page={{ product_list.number }}&amp;{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&amp;{% endif %}{% if request.GET.tiers %}tiers={{ request.GET.tiers }}&amp;{% endif %}order_by=newest">Нові</a> |
+                                        <a href="{% url 'product_list' view.kwargs.slug %}?{% if request.GET.page %}page={{ product_list.number }}&amp;{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&amp;{% endif %}{% if request.GET.tiers %}tiers={{ request.GET.tiers }}&amp;{% endif %}order_by=oldest">Старі</a>
                                     </span>
                                 </div>
                             </div>
