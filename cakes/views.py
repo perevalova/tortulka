@@ -1,16 +1,18 @@
 import logging
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 
 from smtplib import SMTPServerDisconnected, SMTPConnectError
 
-from cakes.models import Category, Product
-from tortulka.settings import CONTACT_EMAIL
+from cakes.models import Category, Product, Subscriber
+from tortulka.settings import CONTACT_EMAIL, SEPARATOR
+from .encryption_util import decrypt
 from .forms import ContactForm, SubscriberForm
-from .util import paginate, filtering
+from .util import paginate, filtering, send_subscription_email
 
 
 class MainPageView(TemplateView):
@@ -25,9 +27,11 @@ class MainPageView(TemplateView):
     def post(self, request, *args, **kwargs):
         form = SubscriberForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            url = request.build_absolute_uri(
+                reverse('subscription_confirmation'))
+            send_subscription_email(form.cleaned_data['email'], url)
             messages.success(self.request,
-                             'Ви успішно підписалися на розсилку!')
+                             'Перевірте Вашу поштову скриньку та підтвердіть, будь ласка, підписку!')
         else:
             messages.warning(self.request, 'Ви вже підписані на розсилку!')
         return redirect('home')
@@ -147,3 +151,60 @@ class RulesView(TemplateView):
 
 class AboutView(TemplateView):
     template_name = 'about.html'
+
+
+def subscription_confirmation(request):
+    if 'POST' == request.method:
+        raise Http404
+
+    token = request.GET.get('token', None)
+
+    if not token:
+        logging.getLogger('warning').warning('Invalid Link')
+        messages.warning(request, 'Недійсне посилання')
+        return redirect('home')
+
+    token = decrypt(token)
+    if token:
+        token = token.split(SEPARATOR)
+        email = token[0]
+        try:
+            subscribe_model_instance = Subscriber.objects.create(email=email)
+            subscribe_model_instance.save()
+            messages.success(request, 'Підписка успішно підтверджена! Дякую.')
+        except Exception:
+            logging.getLogger('warning').warning('Invalid Link')
+            messages.warning(request, 'Недійсне посилання')
+    else:
+        logging.getLogger('warning').warning('Invalid token')
+        messages.warning(request, 'Недійсне посилання')
+
+    return redirect('home')
+
+
+def unsubscribe(request):
+    if 'POST' == request.method:
+        raise Http404
+
+    token = request.GET.get('token', None)
+
+    if not token:
+        logging.getLogger('warning').warning('Invalid Link')
+        messages.warning(request, 'Недійсне посилання')
+        return redirect('home')
+
+    token = decrypt(token)
+    if token:
+        token = token.split(SEPARATOR)
+        email = token[0]
+        try:
+            Subscriber.objects.get(email=email).delete()
+            messages.success(request, 'Ви успішно відписалися від розсилки.')
+        except Exception:
+            logging.getLogger('warning').warning('Invalid Link')
+            messages.warning(request, 'Недійсне посилання')
+    else:
+        logging.getLogger('warning').warning('Invalid token')
+        messages.warning(request, 'Недійсне посилання')
+
+    return redirect('home')
