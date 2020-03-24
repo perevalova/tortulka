@@ -1,5 +1,12 @@
-from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
+import time
 
+from django.contrib.sites.models import Site
+from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
+from django.template.loader import render_to_string
+from django.urls import reverse
+
+from tortulka.settings import SEPARATOR
+from .encryption_util import encrypt
 from .models import Subscriber
 from .tasks import send_news_email
 
@@ -92,4 +99,30 @@ def send_newsletter(subject, message):
     """
     subscribers = list(Subscriber.objects.values_list('email', flat=True))
     for subscriber in subscribers:
+        token = encrypt(subscriber + SEPARATOR + str(time.time()))
+        url = reverse('unsubscribe')
+        domain = Site.objects.get_current().domain
+        confirmation_url = domain + url + '?token=' + token
+        message = render_to_string('news_letter.html', {
+            'message': message,
+            'confirmation_url': confirmation_url
+        })
         send_news_email.delay(subject, message, subscriber)
+
+
+def send_subscription_email(email, url):
+    """
+    Send email to subscriber for confirmation subscription
+
+    :param email: Subscriber email
+    :param url: url to subscription confirmation page
+    :return: None
+    """
+    token = encrypt(email + SEPARATOR + str(time.time()))
+    confirmation_url = url + '?token=' + token
+    mail_subject = 'Підтвердження підписки на розсилку'
+    message = render_to_string('subscription.html', {
+        'confirmation_url': confirmation_url
+    })
+    to_email = email
+    send_news_email.delay(mail_subject, message, to_email)
