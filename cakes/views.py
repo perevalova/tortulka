@@ -141,9 +141,6 @@ class SearchView(ListView):
         context = paginate(self.get_queryset(), self.paginate_by, self.request,
                            context, var_name='products')
         context['product_amount'] = product_amount
-        query = self.request.GET.get('q', '')
-        if query:
-            context['query'] = query
 
         return context
 
