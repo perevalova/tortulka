@@ -1,6 +1,5 @@
 import logging
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -9,9 +8,10 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from smtplib import SMTPServerDisconnected, SMTPConnectError
 
 from cakes.models import Category, Product, Subscriber
-from tortulka.settings import CONTACT_EMAIL, SEPARATOR
+from tortulka.settings import  SEPARATOR
 from .encryption_util import decrypt
 from .forms import ContactForm, SubscriberForm
+from .tasks import send_admin_email
 from .util import paginate, filtering, send_subscription_email
 
 
@@ -100,7 +100,7 @@ class ContactsView(FormView):
 
         # sending letter
         try:
-            send_mail(subject, message, email, [CONTACT_EMAIL])
+            send_admin_email(subject, message, email)
             messages.success(self.request, 'Лист успішно надісланий!')
         except (SMTPServerDisconnected, SMTPConnectError):
             messages.warning(self.request,
