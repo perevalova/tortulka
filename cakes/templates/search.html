@@ -44,8 +44,7 @@
                             </button>
                         </div>
                     </form>
-                    <!-- Redults -->
-                    {% if products %}
+                    <!-- Results -->
                         <div class="rd-search-results">
                             <div id="search-results">
                                 <ol class="search-list">
@@ -63,21 +62,15 @@
                                                     height="132"/></a>
                                             <p>Категорія:
                                                 {% for category in product.category.all %}
-                                                    <span><a href="{{ category.get_absolute_url  }}">{{ category }}</a></span> {% endfor %}
+                                                    <span><a href="{{ category.get_absolute_url  }}">{{ category }}</a></span> {% if not forloop.last %}, {% endif %}{% endfor %}
                                             </p>
+                                    {% empty %}
+                                        <!-- If not results -->
+                                        <h4>Нічого не знайдено </h4>
                                     {% endfor %}
                                 </ol>
                             </div>
                         </div>
-                        <!-- If not results -->
-                    {% else %}
-                        <div class="rd-search-results">
-                        <div id="search-results">
-                            <div class="container">
-                                <h4>Нічого не знайдено </h4>
-                            </div>
-                        </div>
-                    {% endif %}
                     </div>
                 </div>
             </div>

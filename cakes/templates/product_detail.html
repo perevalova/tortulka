@@ -94,7 +94,7 @@
                     <ul class="list list-description">
                         <li><span>Категорії:</span>
                             {% for category in object.category.all %}
-                                <span>{{ category }},</span> {% endfor %}
+                                <span>{{ category }}</span> {% if not forloop.last %}, {% endif %}{% endfor %}
                         </li>
                     </ul>
                     <hr class="hr-gray-100">
