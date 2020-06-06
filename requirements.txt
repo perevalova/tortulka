@@ -3,7 +3,7 @@ billiard==3.6.3.0
 celery==4.4.1
 cffi==1.14.0
 cryptography==2.8
-Django==2.2.9
+Django==2.2.13
 django-debug-toolbar==2.2
 django-redis==4.11.0
 django-summernote==0.8.11.6
