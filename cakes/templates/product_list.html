@@ -193,14 +193,14 @@
                             <article class="product">
                                 <div class="product-body">
                                     {% if object.images.all %}
-                                    <div class="product-figure"><img
-                                            src="{{ object.images.all.first.image.url }}"
-                                            alt="" width="220" height="160"/>
+                                    <div class="product-figure">
+                                        <img class="product-img" src="{{ object.images.all.first.image.url }}"
+                                             alt="" width="220" height="160"/>
                                     </div>
                                     {% else %}
-                                    <div class="product-figure"><img
-                                            src="{% static 'images/default.jpg' %}"
-                                            alt="" width="220" height="160"/>
+                                    <div class="product-figure">
+                                        <img class="product-img" src="{% static 'images/default.jpg' %}"
+                                             alt="" width="220" height="160"/>
                                     </div>
                                     {% endif %}
                                     <h5 class="product-title"><a

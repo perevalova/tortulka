@@ -259,11 +259,11 @@
                         <div class="product-body">
                             <div class="product-figure">
                                 {% if product.images.all %}
-                                <img src="{{ product.images.all.first.image.url }}" alt=""
-                                    width="148" height="128"/>
+                                <img class="product-img" src="{{ product.images.all.first.image.url }}"
+                                     alt="" width="148" height="128"/>
                                 {% else %}
-                                <img src="{% static 'images/default.jpg' %}" alt=""
-                                    width="148" height="128"/>
+                                <img class="product-img" src="{% static 'images/default.jpg' %}"
+                                     alt="" width="148" height="128"/>
                                 {% endif %}
                             </div>
                             <h5 class="product-title"><a

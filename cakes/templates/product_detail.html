@@ -42,17 +42,17 @@
                     {% if object.images.all %}
                         {% for image in object.images.all %}
                         <div class="item">
-                            <div class="slick-product-figure"><img
-                                    src="{{ image.image.url }}"
-                                    alt="" width="530" height="480"/>
+                            <div class="slick-product-figure product-img">
+                                <img src="{{ image.image.url }}"
+                                     alt="" width="530" height="480"/>
                             </div>
                         </div>
                         {% endfor %}
                     {% else %}
                         <div class="item">
-                            <div class="slick-product-figure"><img
-                                    src="{% static 'images/default.jpg' %}"
-                                    alt="" width="530" height="480"/>
+                            <div class="slick-product-figure product-img">
+                                <img src="{% static 'images/default.jpg' %}"
+                                     alt="" width="530" height="480"/>
                             </div>
                         </div>
                     {% endif %}

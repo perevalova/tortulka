@@ -36,13 +36,11 @@
                             class="post-classic-figure"
                             href="{{ category.get_absolute_url }}">
                         {% if category.image %}
-                        <img
-                            src="{{ category.image.url }}" alt="" width="370"
-                            height="239"/>
+                            <img class="product-img" src="{{ category.image.url }}"
+                                 alt="" width="370" height="239"/>
                         {% else %}
-                        <img
-                            src="{% static 'images/default.jpg' %}" alt="" width="370"
-                            height="239"/>
+                        <img class="product-img" src="{% static 'images/default.jpg' %}"
+                             alt="" width="370" height="239"/>
                         {% endif %}
                     </a>
                         <div class="post-classic-content">

@@ -1,9 +1,14 @@
+/* Main */
+.product-img {
+    border-radius: 5px;
+}
+
 /* Product detail */
 .list-inline.list-social.list-inline-lg {
     text-align: center;
 }
 
-/*Product list*/
+/* Product list */
 .tiers-filter{
     margin-top: 15px;
 }
@@ -17,13 +22,13 @@
 }
 
 
-/*Map*/
+/* Map */
 #map {
     width: 100%;
     height: 250px;
 }
 
-/*About page*/
+/* About page */
 #about {
     text-align: center;
 }
